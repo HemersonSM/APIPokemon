@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="flex flex-wrap justify-content-center card-container">
+      <ng-template ngFor let-pokemon [ngForOf]="pokemons">
+      <div class="flex align-items-center justify-content-center m-2 border-round h-16rem w-14rem m-2" *ngIf="pokemon.status" style="border: 1px solid red">
+       <div>
+         <img src="{{pokemon.status.sprites.other.home.front_default}}" alt="" width="150">
+         <p class="flex align-items-center justify-content-center">#{{pokemon.status.id}}</p>
+         <p class="flex align-items-center justify-content-center font-bold">{{pokemon.name}}</p>
+         <p class="flex align-items-center justify-content-center">teste</p>
+       </div>
+      </div>
+      </ng-template>
+    </div>
+</div>
+
