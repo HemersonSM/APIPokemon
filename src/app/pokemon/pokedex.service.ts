@@ -7,11 +7,11 @@ import {map, Observable, tap} from "rxjs";
 })
 export class PokedexService {
 
-  public APIURL = "https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20";
+  public APIURL = "https://pokeapi.co/api/v2/pokemon/";
   constructor(private httpClient:HttpClient) { }
 
   public getPokemonAll():Observable<any>{
-    return this.httpClient.get<any>(this.APIURL).pipe(
+    return this.httpClient.get<any>(`${this.APIURL}?limit=10&offset=0`).pipe(
       tap(res=>res),
       tap(res=>{
         res.results.map((pokemon:any)=>{
@@ -19,5 +19,9 @@ export class PokedexService {
         })
       })
     );
+  }
+
+  public getOnePokemon(id:any):Observable<any>{
+    return this.httpClient.get<any>(`https://pokeapi.co/api/v2/pokemon/${id}`).pipe(res=>res)
   }
 }

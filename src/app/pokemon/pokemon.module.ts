@@ -5,6 +5,8 @@ import { PokemonRoutingModule } from './pokemon-routing.module';
 import { IndexComponent } from './index/index.component';
 
 import {ImageModule} from 'primeng/image';
+import {DialogModule} from 'primeng/dialog';
+import {ChipModule} from "primeng/chip";
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import {ImageModule} from 'primeng/image';
   imports: [
     CommonModule,
     PokemonRoutingModule,
-    ImageModule
+    ImageModule,
+    DialogModule,
+
   ]
 })
 export class PokemonModule { }
