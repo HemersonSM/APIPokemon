@@ -11,7 +11,7 @@ export class PokedexService {
   constructor(private httpClient:HttpClient) { }
 
   public getPokemonAll():Observable<any>{
-    return this.httpClient.get<any>(`${this.APIURL}?limit=10&offset=0`).pipe(
+    return this.httpClient.get<any>(`${this.APIURL}?limit=50&offset=0`).pipe(
       tap(res=>res),
       tap(res=>{
         res.results.map((pokemon:any)=>{

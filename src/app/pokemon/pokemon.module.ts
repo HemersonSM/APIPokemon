@@ -7,6 +7,8 @@ import { IndexComponent } from './index/index.component';
 import {ImageModule} from 'primeng/image';
 import {DialogModule} from 'primeng/dialog';
 import {ChipModule} from "primeng/chip";
+import {TagModule} from "primeng/tag";
+import {TableModule} from "primeng/table";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {ChipModule} from "primeng/chip";
     PokemonRoutingModule,
     ImageModule,
     DialogModule,
-
+    TagModule,
+    ChipModule,
+    TableModule,
   ]
 })
 export class PokemonModule { }
