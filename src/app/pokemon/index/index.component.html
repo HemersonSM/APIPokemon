@@ -1,9 +1,18 @@
 <div class="card">
-  <div class="flex flex-wrap justify-content-center  card-container" >
-    <p-table [value]="pokemons" [paginator]="true" [rows]="25" [rowsPerPageOptions]="[25,50,100]" >
-      <ng-template  pTemplate="body" let-pokemon >
-        <div class="card-poke flex align-items-center justify-content-center m-2 border-round h-16rem w-14rem inline-flex"
-             *ngIf="pokemon.status" [style]="{'background':colors[pokemon.status.types[0].type.name]}" (click)="showDialog(pokemon.status.id)">
+  <div class="flex  justify-content-center m-2 card-container">
+    <p-table #dt [value]="pokemons" [paginator]="true" [rows]="25" [rowsPerPageOptions]="[25,50,100]"
+             [globalFilterFields]="['name','pokemon.name']">
+      <ng-template pTemplate="caption">
+        <div style="text-align: center">
+          <input class="p-inputtext p-component" pInputText type="text"
+                 (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Search Pokemon"/>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="body" let-pokemon>
+        <div
+          class="card-poke flex align-items-center justify-content-center m-2 border-round h-16rem w-13rem inline-flex"
+          *ngIf="pokemon.status" [style]="{'background':colors[pokemon.status.types[0].type.name]}"
+          (click)="showDialog(pokemon.status.id)">
           <div>
             <img src="{{pokemon.status.sprites.other.home.front_default}}" alt="" width="150">
             <p class="flex align-items-center justify-content-center">#{{pokemon.status.id}}</p>
@@ -15,36 +24,49 @@
   </div>
 </div>
 
-<p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [draggable]="false" [modal]="true" [resizable]="false" *ngIf="pokes">
-  <div  [style]="{width: '70vw'}">
-    <div class="grid">
-      <div class="col-6 capitalize">
-        <div >
-          <p class="text-3xl font-bold">{{pokes.name}} #{{pokes.id}}</p>
+<p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [draggable]="false" [modal]="true"
+          [resizable]="false" *ngIf="pokes" [style]="{width:'25vw',height:'auto'}">
+  <div class=" border-round " [style]="{'background':colors[pokes.types[0].type.name],width:'100%',height:'100%'}">
+    <div class="col-12">
+      <div class="card">
+        <div class="flex justify-content-grap flex-wrap card-container">
+          <div class="flex align-items-center justify-content-center">
+            <img src="{{pokes.sprites.other.home.front_default}}" [style]="{width: '70%'}">
+          </div>
         </div>
-        <div class="m-3">
-          <p-tag *ngFor="let item of pokes.types" [style]="{'background':colors[item.type.name],'color':'black'}">{{item.type.name}}</p-tag>
-        </div>
-        <div>
-          <tr class="flex align-items-center justify-content-around  flex-wrap card-container purple-container">
-            <td>Height</td>
-            <td>Weight</td>
-            <td>Abilities</td>
-          </tr>
-          <tr class="flex align-items-center justify-content-around  flex-wrap card-container purple-container">
-            <th>{{pokes.height}}m</th>
-            <th>{{pokes.weight}}m</th>
-            <th class="flex flex-column card-container green-container">
-              <p *ngFor="let item of pokes.abilities">{{item.ability.name}}</p>
-            </th>
-          </tr>
-        </div>
+    </div>
+    </div>
+    <div class="col-12">
+      <p class="flex align-items-center justify-content-center font-bold capitalize text-2xl">{{pokes.name}}</p>
+      <div>
+        <p-tag *ngFor="let item of pokes.types"
+               [style]="{'background':colors[item.type.name],'color':'black'}">{{item.type.name}}</p-tag>
       </div>
-      <div class="col-6 border-round" [style]="{'background':colors[pokes.types[0].type.name]}">
-        <img src="{{pokes.sprites.other.home.front_default}}" alt="" [style]="{width: '100%'}">
+      <div class="card">
+        <div class="flex justify-content-around flex-wrap card-container indigo-container">
+          <div class="flex align-items-center w-full justify-content-centerbg-indigo-500">
+            <table class="w-full text-xs text-center">
+              <tr>
+                <th>{{pokes.height}}</th>
+                <th>{{pokes.weight}}</th>
+                <th>{{pokes.base_experience}}</th>
+                <th>
+                  <span *ngFor="let item of pokes.abilities" ><br>{{item.ability.name}}</span>
+                </th>
+              </tr>
+              <tr>
+                <td>HEIGHT</td>
+                <td>WEIGHT</td>
+                <td>EX</td>
+                <td>
+ABILITY
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
 </p-dialog>
 

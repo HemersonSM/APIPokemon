@@ -50,8 +50,7 @@ export class IndexComponent implements OnInit {
   public showDialog(id: any) {
     this.display = true;
     this.pokedexService.getOnePokemon(id).subscribe(res => {
-      this.pokes = res,
-        console.log(res)
+      this.pokes = res
     })
   }
 

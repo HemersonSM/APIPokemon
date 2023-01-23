@@ -9,19 +9,21 @@ import {DialogModule} from 'primeng/dialog';
 import {ChipModule} from "primeng/chip";
 import {TagModule} from "primeng/tag";
 import {TableModule} from "primeng/table";
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
   declarations: [
     IndexComponent
   ],
-  imports: [
-    CommonModule,
-    PokemonRoutingModule,
-    ImageModule,
-    DialogModule,
-    TagModule,
-    ChipModule,
-    TableModule,
-  ]
+    imports: [
+        CommonModule,
+        PokemonRoutingModule,
+        ImageModule,
+        DialogModule,
+        TagModule,
+        ChipModule,
+        TableModule,
+        InputTextModule,
+    ]
 })
 export class PokemonModule { }
